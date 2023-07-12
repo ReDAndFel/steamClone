@@ -4,7 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.steamclone.models.entities.Game;
-import org.steamclone.models.entities.User;
 
 import java.util.List;
 
@@ -18,12 +17,13 @@ public interface GameRepo extends JpaRepository<Game, Integer> {
     @Query("select g from Game g where g.price between :minPrice and :maxPrice")
     List<Game> listGameByPrice(float minPrice, float maxPrice);
 
-    @Query("select g from Game g where g.developer = :nameDeveloper")
-    List<Game> listGameByDeveloper(String nameDeveloper);
+    @Query("select g from Game g join g.businesses b where  b.name= :nameBusiness")
+    List<Game> listGameByBusiness(String nameBusiness);
 
-    @Query("select g from Game g where g.editor = :nameEditor")
-    List<Game> listGameByEditor(String nameEditor);
 
     @Query("select g from Game g join g.wishGameUsers w where w.id = :idUser")
     List<Game> listFavoriteProduct(String idUser);
+
+    @Query("select g from Game g where g.puntuation between :minPuntuation and :maxPuntuation")
+    List<Game> findByPuntuation(float puntuation);
 }

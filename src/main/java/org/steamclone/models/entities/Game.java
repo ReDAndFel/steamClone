@@ -36,13 +36,11 @@ public class Game implements Serializable {
     @Column(nullable = false)
     private String clasification;
     @Column(nullable = false)
-    private int puntuation;
+    private float puntuation;
 
-    @OneToMany(mappedBy = "game")
-    private List<Business> developer;
+    @ManyToMany
+    private List<Business> businesses;
 
-    @ManyToOne
-    private Business editor;
     @OneToMany(mappedBy = "game")
     private List<Tag> tags;
     @ElementCollection

@@ -1,9 +1,6 @@
 package org.steamclone.models.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
@@ -19,4 +16,17 @@ public class TransactionDetail implements Serializable {
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(nullable = false)
+    private float price;
+
+    @Column(nullable = false)
+    private int unities;
+
+    @ManyToOne
+    private Transaction transaction;
+
+    @ManyToOne
+    private Game game;
+
 }

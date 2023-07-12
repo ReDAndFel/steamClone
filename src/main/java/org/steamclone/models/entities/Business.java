@@ -23,6 +23,11 @@ public class Business implements Serializable {
     @ManyToOne
     private Game game;
 
-    @OneToMany(mappedBy = "editor")
+    @ManyToMany(mappedBy = "business")
     private List<Game> games;
+
+    @Column(nullable = false)
+    private BusinessType businessType;
+
+
 }

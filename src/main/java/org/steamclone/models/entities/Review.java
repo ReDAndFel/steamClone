@@ -19,4 +19,7 @@ public class Review implements Serializable {
 
     @ManyToOne
     private Game game;
+
+    @Column(nullable = false, length = 2)
+    private PuntuationReview puntuation;
 }

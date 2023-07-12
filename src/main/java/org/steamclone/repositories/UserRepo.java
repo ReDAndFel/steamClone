@@ -8,7 +8,7 @@ import org.steamclone.models.entities.User;
 @Repository
 public interface UserRepo extends JpaRepository<User,Integer> {
 
-    @Query("select u from User u where u.nickname = :nickname")
+    @Query("select u from User u where u.nickname  like concat('%', :nickName, '%')")
     User findByNickName(String nickName);
 
 }

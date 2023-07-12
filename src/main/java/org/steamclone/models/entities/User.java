@@ -36,10 +36,14 @@ public class User implements Serializable {
     private int level;
     @Column(nullable = false)
     private String country;
+
+    @Column(nullable = false)
+    private Rol rol;
     @OneToMany(mappedBy = "user" )
     private List<Game> games;
     @ManyToMany
     private List<Achievement> achievements;
+
     @ManyToMany
     private List<Game> wishGames;
     @OneToMany(mappedBy = "user")
