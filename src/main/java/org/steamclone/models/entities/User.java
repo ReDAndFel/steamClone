@@ -36,25 +36,23 @@ public class User implements Serializable {
     private int level;
     @Column(nullable = false)
     private String country;
-
     @Column(nullable = false)
     private Rol rol;
-    @OneToMany(mappedBy = "user" )
+    @ManyToMany(mappedBy = "users" )
     private List<Game> games;
     @ManyToMany
     private List<Achievement> achievements;
-
     @ManyToMany
     private List<Game> wishGames;
     @OneToMany(mappedBy = "user")
     private List<Transaction> transactions;
     @OneToMany(mappedBy = "user")
-    private List<ProfileComment> profileComments;
+    private List<ProfileComment> writeProfileComments;
     @OneToMany(mappedBy = "user")
     private List<PaymentMethod> paymentMethods;
-    @ManyToMany
-    @JoinTable(name = "user_friends", joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "friend_user_id"))
-    private Set<User> friends = new HashSet<>();
+    @OneToMany(mappedBy = "user")
+    private List<Review> reviews;
+    @OneToMany(mappedBy = "profileUser")
+    private List<ProfileComment> profileUserComment;
 
 }

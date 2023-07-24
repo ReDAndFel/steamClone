@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -19,4 +20,11 @@ public class ProfileComment implements Serializable {
     private int id;
     @ManyToOne
     private User user;
+    @Column(nullable = false)
+    private String comment;
+    @Column(nullable = false)
+    private LocalDate date;
+    @ManyToOne
+    private User profileUser;
+
 }

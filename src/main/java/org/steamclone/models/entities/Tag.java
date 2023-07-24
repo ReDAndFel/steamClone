@@ -3,6 +3,8 @@ package org.steamclone.models.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -16,7 +18,6 @@ public class Tag {
     private int id;
     @Column(nullable = false)
     private String name;
-
-    @ManyToOne
-    private Game game;
+    @ManyToMany(mappedBy = "tags")
+    private List<Game> games;
 }

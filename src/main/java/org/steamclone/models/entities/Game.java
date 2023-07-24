@@ -37,24 +37,23 @@ public class Game implements Serializable {
     private String clasification;
     @Column(nullable = false)
     private float puntuation;
-
     @ManyToMany
     private List<Business> businesses;
-
-    @OneToMany(mappedBy = "game")
+    @ManyToMany
     private List<Tag> tags;
     @ElementCollection
     private List<String> languages;
-
     @OneToMany(mappedBy = "game")
     private List<Review> reviews;
     @OneToMany(mappedBy = "game")
     private List<Achievement> achievements;
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection
     private Map<String,String> images;
-    @ManyToOne
-    private User user;
+    @ManyToMany
+    private List<User> users;
     @ManyToMany(mappedBy = "wishGames")
     private List<User> wishGameUsers;
 
+    @OneToMany(mappedBy = "game")
+    private List<TransactionDetail> transactionDetail;
 }

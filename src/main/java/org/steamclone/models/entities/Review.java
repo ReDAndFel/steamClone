@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -18,8 +19,17 @@ public class Review implements Serializable {
     private int id;
 
     @ManyToOne
+    private User user;
+
+    @ManyToOne
     private Game game;
 
     @Column(nullable = false, length = 2)
     private PuntuationReview puntuation;
+
+    @Column(nullable = false)
+    private LocalDate date;
+
+    @Column(nullable = false)
+    private String review;
 }

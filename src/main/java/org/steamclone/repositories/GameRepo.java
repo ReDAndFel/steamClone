@@ -17,13 +17,12 @@ public interface GameRepo extends JpaRepository<Game, Integer> {
     @Query("select g from Game g where g.price between :minPrice and :maxPrice")
     List<Game> listGameByPrice(float minPrice, float maxPrice);
 
-    @Query("select g from Game g join g.businesses b where  b.name= :nameBusiness")
-    List<Game> listGameByBusiness(String nameBusiness);
-
+    @Query("select g from Game g join g.businesses b where  b.id= :idBusiness")
+    List<Game> listGameByIdBusiness(int idBusiness);
 
     @Query("select g from Game g join g.wishGameUsers w where w.id = :idUser")
-    List<Game> listFavoriteProduct(String idUser);
+    List<Game> listFavoriteGame(int idUser);
+    @Query("select g from Game g join g.users u where  u.id= :idUser")
+    List<Game> listGameByIdUser(int idUser);
 
-    @Query("select g from Game g where g.puntuation between :minPuntuation and :maxPuntuation")
-    List<Game> findByPuntuation(float puntuation);
 }

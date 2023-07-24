@@ -16,16 +16,10 @@ public class TransactionDetail implements Serializable {
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     @Column(nullable = false)
     private float price;
-
-    @Column(nullable = false)
-    private int unities;
-
     @ManyToOne
     private Transaction transaction;
-
     @ManyToOne
     private Game game;
 

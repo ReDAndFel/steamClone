@@ -11,4 +11,6 @@ public interface UserRepo extends JpaRepository<User,Integer> {
     @Query("select u from User u where u.nickname  like concat('%', :nickName, '%')")
     User findByNickName(String nickName);
 
+    @Query("select u from User u where u.email = :emailUser")
+    User findByEmail(String emailUser);
 }
