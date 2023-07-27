@@ -37,6 +37,8 @@ public class Game implements Serializable {
     private String clasification;
     @Column(nullable = false)
     private float puntuation;
+    @Column(nullable = false)
+    private boolean state;
     @ManyToMany
     private List<Business> businesses;
     @ManyToMany

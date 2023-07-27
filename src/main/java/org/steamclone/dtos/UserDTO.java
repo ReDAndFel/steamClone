@@ -25,5 +25,6 @@ public class UserDTO {
     private int level;
     private String country;
     private Rol rol;
+    private  boolean state;
 
 }

@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface PaymentMethodInterface {
 
-    public int createPaymentMethod(PaymentMethod paymentMethod);
+    public int createPaymentMethod(PaymentMethodDTO paymentMethodDTO) throws Exception;
 
     public int updatePaymentMethod(int idPaymentMethod, PaymentMethodDTO paymentMethodDTO);
 

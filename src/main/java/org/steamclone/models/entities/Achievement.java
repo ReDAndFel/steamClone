@@ -24,6 +24,9 @@ public class Achievement implements Serializable {
     @Column(nullable = false)
     private String description;
 
+    @Column(nullable = false)
+    private boolean state;
+
     @ManyToMany(mappedBy = "achievements" )
     private List<User> users;
 

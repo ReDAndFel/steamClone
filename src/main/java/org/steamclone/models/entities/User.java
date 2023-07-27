@@ -54,5 +54,6 @@ public class User implements Serializable {
     private List<Review> reviews;
     @OneToMany(mappedBy = "profileUser")
     private List<ProfileComment> profileUserComment;
-
+    @Column(nullable = false)
+    private boolean state;
 }

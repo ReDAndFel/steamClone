@@ -37,8 +37,7 @@ public class TagInterfaceImpl implements TagInterface {
     public TagDTO convertToDTO (Tag tag){
         TagDTO tagDTO = new TagDTO(
                 tag.getId(),
-                tag.getName(),
-                gameInterface.listGameByTag(tag.getName())
+                tag.getName()
         );
 
         return  tagDTO;

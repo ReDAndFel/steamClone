@@ -22,4 +22,6 @@ public interface BusinessInterface {
     public BusinessDTO getBusinessDTO(int idBusiness);
     public Business getBusiness(int idBusiness);
 
+
+
 }

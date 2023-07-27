@@ -12,8 +12,8 @@ import java.util.List;
 public interface GameInterface {
 
     public int createGame(GameDTO gameDTO);
-    public int updateGame(int id, GameDTO gameDTO);
-    public int deleteGame(int id);
+    public int updateGame(int id, GameDTO gameDTO) throws Exception;
+    public boolean deleteGame(int id) throws Exception;
     public List<GameDTO> listAllGames();
     public List<GameDTO> listGameByTag(String tag);
     public List<GameDTO> listGameByName(String name);
@@ -22,5 +22,8 @@ public interface GameInterface {
     public List<GameDTO> listFavoriteGame(int idUser);
     public List<GameDTO> listGameByIdUser(int idUser);
     public GameDTO getGameDTO(int idGame);
+    public Game getGame(int idGame);
+
+
 
 }

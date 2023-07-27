@@ -1,9 +1,5 @@
 package org.steamclone.services.implementations;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.ManyToMany;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.steamclone.dtos.BusinessDTO;
 import org.steamclone.dtos.GameDTO;
@@ -17,11 +13,7 @@ import org.steamclone.services.interfaces.BusinessInterface;
 import org.steamclone.services.interfaces.GameInterface;
 import org.steamclone.services.interfaces.TagInterface;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class GameInterfaceImpl implements GameInterface {
@@ -38,12 +30,13 @@ public class GameInterfaceImpl implements GameInterface {
         game.setName(gameDTO.getName());
         game.setReleaseDate(gameDTO.getReleaseDate());
         game.setRealPrice(gameDTO.getRealPrice());
-        game.setPrice(gameDTO.getPrice());
+        game.setPrice(calculatePrice(gameDTO.getRealPrice(), gameDTO.getDiscount()));
         game.setDiscount(gameDTO.getDiscount());
         game.setDescription(gameDTO.getDescription());
         game.setRequeriments(gameDTO.getRequeriments());
         game.setClasification(gameDTO.getClasification());
         game.setPuntuation(0);
+        game.setState(true);
 
         List<Business> listBusiness = new ArrayList<>();
 
@@ -69,14 +62,73 @@ public class GameInterfaceImpl implements GameInterface {
         return game.getId();
     }
 
-    @Override
-    public int updateGame(int id, GameDTO gameDTO) {
-        return 0;
+    private double calculatePrice(double realPrice, int discount) {
+
+        double mountDiscount = (realPrice*discount)/100;
+        double price = realPrice-mountDiscount;
+        return price;
+
     }
 
     @Override
-    public int deleteGame(int id) {
-        return 0;
+    public int updateGame(int id, GameDTO gameDTO) throws Exception {
+
+        Optional<Game> foundGame = gameRepo.findById(id);
+
+        if (foundGame.isEmpty()) {
+            throw new Exception("El juego con id " + id + " no existe");
+        }
+
+        Game updateGame = foundGame.get();
+
+        updateGame.setName(gameDTO.getName());
+        updateGame.setReleaseDate(gameDTO.getReleaseDate());
+        updateGame.setRealPrice(gameDTO.getRealPrice());
+        double realPrice = gameDTO.getRealPrice();
+        int discount = gameDTO.getDiscount();
+        updateGame.setPrice(calculatePrice(realPrice, discount));
+        updateGame.setDiscount(gameDTO.getDiscount());
+        updateGame.setDescription(gameDTO.getDescription());
+        updateGame.setRequeriments(gameDTO.getRequeriments());
+        updateGame.setClasification(gameDTO.getClasification());
+        updateGame.setPuntuation(gameDTO.getPuntuation());
+        updateGame.setImages(convert(gameDTO.getImages()));
+
+        List<Tag> listTags = new ArrayList<>();
+        for (TagDTO tagDTO: gameDTO.getTags()) {
+            listTags.add(tagInterface.getTag(tagDTO.getId()));
+        }
+        updateGame.setTags(listTags);
+
+        List<Business> listBusiness = new ArrayList<>();
+        for (BusinessDTO businessDTO: gameDTO.getBusinesses()) {
+            listBusiness.add(businessInterface.getBusiness(businessDTO.getId()));
+        }
+        updateGame.setBusinesses(listBusiness);
+
+        updateGame.setLanguages(gameDTO.getLanguages());
+
+        gameRepo.save(updateGame);
+
+        return updateGame.getId();
+    }
+
+    @Override
+    public boolean deleteGame(int id) throws Exception {
+
+        Optional<Game> foundGame = gameRepo.findById(id);
+
+        if (foundGame.isEmpty()) {
+            throw new Exception("El juego con id " + id + " no existe");
+        }
+
+        Game deleteGame = foundGame.get();
+
+        deleteGame.setState(false);
+
+        gameRepo.save(deleteGame);
+
+        return deleteGame.isState();
     }
 
     @Override
@@ -191,7 +243,8 @@ public class GameInterfaceImpl implements GameInterface {
                 businessInterface.listByIdGame(game.getId()),
                 tagInterface.listTagByIdGame(game.getId()),
                 game.getLanguages(),
-                convertImageToDTO(game.getImages())
+                convertImageToDTO(game.getImages()),
+                game.isState()
         );
 
         return gameDTO;

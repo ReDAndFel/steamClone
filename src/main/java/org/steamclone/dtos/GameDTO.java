@@ -25,5 +25,6 @@ public class GameDTO {
     private List<TagDTO> tags;
     private List<String> languages;
     private List<ImageDTO> images;
+    private boolean state;
 
 }
