@@ -14,7 +14,9 @@ import java.util.Optional;
 @Service
 public class UserInterfaceImpl implements UserInterface {
 
+    @Autowired
     UserRepo userRepo;
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Override

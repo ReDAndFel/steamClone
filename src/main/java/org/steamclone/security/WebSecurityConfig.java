@@ -27,23 +27,13 @@ public class WebSecurityConfig {
         http.csrf().disable();
         http.cors();
 
-        http.authorizeHttpRequests().requestMatchers("/api/auth/**").permitAll();
+        //http.authorizeHttpRequests().requestMatchers("/api/auth/**").permitAll();
 
-        http.authorizeHttpRequests().requestMatchers("/api/moderador/**").hasAuthority("MODERADOR");
+        //http.authorizeHttpRequests().requestMatchers("/api/admin/**").hasAuthority("ADMIN");
 
-        http.authorizeHttpRequests().requestMatchers(
-                "/api/productos/obtener/**",
-                "/api/productos/obtener_productos",
-                "/api/productos/obtener_productos_categoria/**",
-                "/api/productos/obtener_productos_precio/**",
-                "/api/productos/obtener_productos_titulo/**",
-                "/api/categorias/obtener",
-                "/api/categorias/obtener/**",
-                "/api/personas/restaurar_contraseña/**",
-                "/api/personas/recuperar_contraseña"
-        ).permitAll().anyRequest().authenticated();
+        //http.authorizeHttpRequests().requestMatchers(""  ).permitAll().anyRequest().authenticated();
 
-        //http.authorizeHttpRequests().anyRequest().permitAll();
+        http.authorizeHttpRequests().anyRequest().permitAll();
 
         http.exceptionHandling().authenticationEntryPoint(jwtEntryPoint);
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

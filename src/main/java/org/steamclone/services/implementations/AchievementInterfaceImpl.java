@@ -1,5 +1,6 @@
 package org.steamclone.services.implementations;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.steamclone.dtos.AchievementDTO;
 import org.steamclone.dtos.UserDTO;
@@ -17,12 +18,15 @@ import java.util.Optional;
 @Service
 public class AchievementInterfaceImpl implements AchievementInterface {
 
+    @Autowired
     GameInterface gameInterface;
+    @Autowired
     AchievementRepo achievementRepo;
+    @Autowired
     UserRepo userRepo;
 
     @Override
-    public int createAchievement(AchievementDTO achievementDTO) {
+    public int createAchievement(AchievementDTO achievementDTO) throws Exception {
 
         Achievement achievement = new Achievement();
         achievement.setDescription(achievementDTO.getDescription());

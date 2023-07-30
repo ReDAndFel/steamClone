@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface AchievementInterface {
 
-    public int createAchievement(AchievementDTO achievementDTO);
+    public int createAchievement(AchievementDTO achievementDTO) throws Exception;
 
     public int updateAchievement(int idAchievement, AchievementDTO achievementDTO) throws Exception;
 

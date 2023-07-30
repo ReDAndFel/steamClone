@@ -1,5 +1,6 @@
 package org.steamclone.services.implementations;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.steamclone.dtos.PaymentMethodDTO;
 import org.steamclone.models.entities.PaymentMethod;
@@ -14,9 +15,11 @@ import java.util.Optional;
 @Service
 public class PaymentMethodInterfaceImpl implements PaymentMethodInterface {
 
+    @Autowired
     TransactionInterface transactionInterface;
+    @Autowired
     PaymentMethodRepo paymentMethodRepo;
-
+    @Autowired
     UserRepo userRepo;
 
     @Override

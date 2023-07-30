@@ -1,5 +1,6 @@
 package org.steamclone.services.implementations;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.steamclone.dtos.BusinessDTO;
 import org.steamclone.dtos.GameDTO;
@@ -18,8 +19,11 @@ import java.util.*;
 @Service
 public class GameInterfaceImpl implements GameInterface {
 
+    @Autowired
     GameRepo gameRepo;
+    @Autowired
     BusinessInterface businessInterface;
+    @Autowired
     TagInterface tagInterface;
 
     @Override
@@ -219,12 +223,25 @@ public class GameInterfaceImpl implements GameInterface {
     }
 
     @Override
-    public GameDTO getGameDTO(int idGame) {
-        return converToDTO(gameRepo.findById(idGame).get());
+    public GameDTO getGameDTO(int idGame) throws Exception {
+
+        Optional<Game> gameFound = gameRepo.findById(idGame);
+
+        if(gameFound.isEmpty()){
+            throw new Exception("El juego con id " + idGame + " no existe");
+        }
+
+        return converToDTO(gameFound.get());
     }
 
-    public Game getGame(int idGame) {
-        return gameRepo.findById(idGame).get();
+    public Game getGame(int idGame) throws Exception {
+        Optional<Game> gameFound = gameRepo.findById(idGame);
+
+        if(gameFound.isEmpty()){
+            throw new Exception("El juego con id " + idGame + " no existe");
+        }
+
+        return gameFound.get();
     }
 
     public GameDTO converToDTO(Game game){

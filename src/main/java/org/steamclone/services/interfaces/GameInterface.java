@@ -21,8 +21,8 @@ public interface GameInterface {
     public List<GameDTO> listGameByIdBusiness(int idBusiness);
     public List<GameDTO> listFavoriteGame(int idUser);
     public List<GameDTO> listGameByIdUser(int idUser);
-    public GameDTO getGameDTO(int idGame);
-    public Game getGame(int idGame);
+    public GameDTO getGameDTO(int idGame) throws Exception;
+    public Game getGame(int idGame) throws Exception;
 
 
 

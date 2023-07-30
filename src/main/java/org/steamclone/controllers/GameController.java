@@ -77,9 +77,8 @@ public class GameController {
                 gameInterface.listGameByIdUser(idUser)));
     }
     @GetMapping("/obtener/{idGame}")
-    public ResponseEntity<MessageDTO> getGameDTO(@PathVariable int idGame){
-        return ResponseEntity.status(HttpStatus.OK).body( new MessageDTO(HttpStatus.OK, false,
-                gameInterface.getGameDTO(idGame)));
+    public ResponseEntity<MessageDTO> getGameDTO(@PathVariable int idGame) throws Exception {
+        return ResponseEntity.status(HttpStatus.OK).body( new MessageDTO(HttpStatus.OK, false,gameInterface.getGameDTO(idGame)));
     }
 
 }

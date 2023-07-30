@@ -1,18 +1,18 @@
 package org.steamclone.services.implementations;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.steamclone.dtos.TagDTO;
-import org.steamclone.models.entities.Business;
 import org.steamclone.models.entities.Tag;
 import org.steamclone.repositories.TagRepo;
-import org.steamclone.services.interfaces.GameInterface;
 import org.steamclone.services.interfaces.TagInterface;
 
 import java.util.ArrayList;
 import java.util.List;
 @Service
 public class TagInterfaceImpl implements TagInterface {
-    GameInterface gameInterface;
+
+
     TagRepo tagRepo;
 
     @Override

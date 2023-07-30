@@ -1,5 +1,6 @@
 package org.steamclone.services.implementations;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.steamclone.dtos.BusinessDTO;
 import org.steamclone.models.entities.Business;
@@ -13,6 +14,7 @@ import java.util.Optional;
 @Service
 public class BusinessInterfaceImpl implements BusinessInterface {
 
+    @Autowired
     BusinessRepo businessRepo;
 
     @Override
