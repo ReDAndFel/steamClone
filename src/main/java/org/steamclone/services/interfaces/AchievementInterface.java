@@ -1,9 +1,5 @@
 package org.steamclone.services.interfaces;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.stereotype.Service;
 import org.steamclone.dtos.AchievementDTO;
 import org.steamclone.dtos.UserDTO;
 

@@ -27,4 +27,7 @@ public class ProfileComment implements Serializable {
     @ManyToOne
     private User profileUser;
 
+    @Column(nullable = false)
+    private boolean state;
+
 }

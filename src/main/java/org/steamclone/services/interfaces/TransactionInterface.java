@@ -1,17 +1,14 @@
 package org.steamclone.services.interfaces;
 
 
-import org.springframework.stereotype.Repository;
-import org.steamclone.dtos.ReviewDTO;
 import org.steamclone.dtos.TransactionDTO;
-
 
 import java.util.List;
 
 public interface TransactionInterface {
 
-    public int createTransaction(TransactionDTO transactionDTO);
+    public int createTransaction(TransactionDTO transactionDTO) throws Exception;
     List<TransactionDTO> listTransactionByIdUser(int idUser);
 
-    public TransactionDTO getTransactionDTO(int idTransactionDTO);
+    public TransactionDTO getTransactionDTO(int idTransactionDTO) throws Exception;
 }

@@ -17,7 +17,7 @@ public class TransactionDetail implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(nullable = false)
-    private float price;
+    private double price;
     @ManyToOne
     private Transaction transaction;
     @ManyToOne

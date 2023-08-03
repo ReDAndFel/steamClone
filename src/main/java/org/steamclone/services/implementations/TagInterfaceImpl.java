@@ -1,6 +1,5 @@
 package org.steamclone.services.implementations;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.steamclone.dtos.TagDTO;
 import org.steamclone.models.entities.Tag;

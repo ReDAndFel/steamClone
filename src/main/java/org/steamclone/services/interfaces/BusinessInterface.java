@@ -1,11 +1,6 @@
 package org.steamclone.services.interfaces;
 
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 import org.steamclone.dtos.BusinessDTO;
-import org.steamclone.dtos.GameDTO;
-import org.steamclone.dtos.UserDTO;
 import org.steamclone.models.entities.Business;
 
 import java.util.List;

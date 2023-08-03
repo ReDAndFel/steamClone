@@ -1,11 +1,8 @@
 package org.steamclone.dtos;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import org.steamclone.models.entities.User;
 
 import java.time.LocalDate;
 
@@ -20,5 +17,7 @@ public class ProfileCommentDTO {
     private String comment;
     private LocalDate date;
     private int idProfileUser;
+
+    private  boolean state;
 
 }

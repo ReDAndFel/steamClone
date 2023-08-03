@@ -69,25 +69,55 @@ public class UserInterfaceImpl implements UserInterface {
     }
 
     @Override
-    public boolean deleteUser(int idUser) {
-        return false;
+    public boolean deleteUser(int idUser) throws Exception {
+
+        Optional<User> foundUser = userRepo.findById(idUser);
+
+        if (foundUser.isEmpty()) {
+            throw new Exception("El usuario con id " + idUser + " no existe");
+        }
+
+        User updateUser = foundUser.get();
+
+        updateUser.setState(false);
+
+
+        userRepo.save(updateUser);
+
+        return updateUser.isState();
     }
 
     @Override
-    public UserDTO findByNickName(String nickName) {
-        return null;
+    public UserDTO findByNickName(String nickName) throws Exception {
+        User foundUser = userRepo.findByNickName(nickName);
+
+        if (foundUser == null) {
+            throw new Exception("El usuario con el nickname " + nickName + " no existe");
+        }
+
+        return convertToDTO(foundUser);
     }
 
     @Override
-    public UserDTO getUserDTO(int idUserDTO) {
+    public UserDTO getUserDTO(int idUserDTO) throws Exception {
+        Optional<User> foundUser = userRepo.findById(idUserDTO);
 
+        if (foundUser.isEmpty()) {
+            throw new Exception("El usuario con el id " + idUserDTO + " no existe");
+        }
 
-        return null;
+        return convertToDTO(foundUser.get());
     }
 
     @Override
-    public User getUser(int idUserDTO) {
-        return null;
+    public User getUser(int idUserDTO) throws Exception {
+        Optional<User> foundUser = userRepo.findById(idUserDTO);
+
+        if (foundUser.isEmpty()) {
+            throw new Exception("El usuario con el id " + idUserDTO + " no existe");
+        }
+
+        return foundUser.get();
     }
 
     public UserDTO convertToDTO(User user){

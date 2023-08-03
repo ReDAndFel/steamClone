@@ -1,7 +1,6 @@
 package org.steamclone.services.interfaces;
 
 import org.steamclone.dtos.TagDTO;
-import org.steamclone.models.entities.Business;
 import org.steamclone.models.entities.Tag;
 
 import java.util.List;

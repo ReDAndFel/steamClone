@@ -21,6 +21,9 @@ public interface ReviewRepo extends JpaRepository<Review, Integer> {
 
     @Query("select r from Review r where r.puntuation = :puntuation")
     List<Review> findByPuntuation(PuntuationReview puntuation);
+    @Query("select r from Review r where r.puntuation = :puntuation and r.game.id =:idGame")
+    List<Review> findByPuntuationAndIdGame(PuntuationReview puntuation, int idGame);
+
 
     @Query("select r from Review r where r.date = :date")
     List<Review> findByDate(LocalDate date);
